@@ -1,0 +1,2 @@
+# every month
+0 0 1 * * /usr/sbin/letsencrypt.sh -c
