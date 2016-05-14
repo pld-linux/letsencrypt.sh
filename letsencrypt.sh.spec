@@ -1,7 +1,7 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
 Version:	0.1.0
-Release:	0.6
+Release:	0.7
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -47,7 +47,7 @@ Current features:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/acme-challenges}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/{acme-challenges,certs}}
 
 install -p letsencrypt.sh $RPM_BUILD_ROOT%{_sbindir}
 
@@ -82,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.md CHANGELOG LICENSE
 %dir %attr(750,root,http) %{_sysconfdir}
+%dir %attr(700,root,root) %{_sysconfdir}/certs
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lighttpd.conf
