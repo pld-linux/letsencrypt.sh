@@ -1,7 +1,7 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
 Version:	0.1.0
-Release:	0.3
+Release:	0.4
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -9,6 +9,7 @@ Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}
 Source1:	apache.conf
 Source2:	lighttpd.conf
 Source3:	config.sh
+Patch0:		pld.patch
 URL:		https://github.com/lukas2511/letsencrypt.sh
 BuildRequires:	rpmbuild(macros) >= 1.713
 Requires:	curl
@@ -41,6 +42,7 @@ Current features:
 
 %prep
 %setup -q
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
