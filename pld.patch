@@ -1,5 +1,5 @@
---- letsencrypt.sh-0.1.0/letsencrypt.sh	2016-03-25 21:35:01.000000000 +0200
-+++ letsencrypt.sh-0.1.0/letsencrypt.sh	2016-05-14 15:51:55.000000000 +0300
+--- letsencrypt.sh-0.1.0/letsencrypt.sh	2016-05-14 15:51:55.000000000 +0300
++++ letsencrypt.sh-0.1.0/letsencrypt.sh	2016-05-14 15:58:33.687279548 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env bash
 +#!/bin/bash
@@ -15,3 +15,12 @@
        if [[ -e "${check_config}/config.sh" ]]; then
          BASEDIR="${check_config}"
          CONFIG="${check_config}/config.sh"
+@@ -109,7 +109,7 @@
+ 
+   [[ -z "${PRIVATE_KEY}" ]] && PRIVATE_KEY="${BASEDIR}/private_key.pem"
+   [[ -z "${PRIVATE_KEY_JSON}" ]] && PRIVATE_KEY_JSON="${BASEDIR}/private_key.json"
+-  [[ -z "${WELLKNOWN}" ]] && WELLKNOWN="${BASEDIR}/.acme-challenges"
++  [[ -z "${WELLKNOWN}" ]] && WELLKNOWN="${BASEDIR}/acme-challenges"
+   [[ -z "${LOCKFILE}" ]] && LOCKFILE="${BASEDIR}/lock"
+ 
+   [[ -n "${PARAM_HOOK:-}" ]] && HOOK="${PARAM_HOOK}"
