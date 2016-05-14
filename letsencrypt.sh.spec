@@ -53,7 +53,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/{acme-challenges,certs},/etc/cron.d}
 
 install -p letsencrypt.sh $RPM_BUILD_ROOT%{_sbindir}
-
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
@@ -61,6 +60,8 @@ cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE6} $RPM_BUILD_ROOT/etc/cron.d/letsencrypt
 install -p %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
+
+cp -p %{SOURCE5} $RPM_BUILD_ROOT/etc/cron.d/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
