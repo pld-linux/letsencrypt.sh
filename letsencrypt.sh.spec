@@ -11,9 +11,11 @@ Source2:	lighttpd.conf
 Source3:	config.sh
 Source4:	domains.txt
 Source5:	hook.sh
+Source6:	crontab
 Patch0:		pld.patch
 URL:		https://github.com/lukas2511/letsencrypt.sh
 BuildRequires:	rpmbuild(macros) >= 1.713
+Requires:	crondaemon
 Requires:	curl
 Requires:	grep
 Requires:	mktemp
@@ -48,7 +50,7 @@ Current features:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/{acme-challenges,certs}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/{acme-challenges,certs},/etc/cron.d}
 
 install -p letsencrypt.sh $RPM_BUILD_ROOT%{_sbindir}
 
@@ -56,6 +58,7 @@ cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p %{SOURCE6} $RPM_BUILD_ROOT/etc/cron.d/letsencrypt
 install -p %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
@@ -83,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md CHANGELOG LICENSE
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/letsencrypt
 %dir %attr(750,root,http) %{_sysconfdir}
 %dir %attr(700,root,root) %{_sysconfdir}/certs
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
