@@ -16,7 +16,7 @@ BuildRequires:	rpmbuild(macros) >= 1.713
 Requires:	curl
 Requires:	grep
 Requires:	mktemp
-Requires:	openssl
+Requires:	openssl-tools
 Requires:	sed
 Requires:	webapps
 Requires:	webserver(access)
