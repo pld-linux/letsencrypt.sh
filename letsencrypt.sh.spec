@@ -1,7 +1,7 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
 Version:	0.1.0
-Release:	0.4
+Release:	0.5
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -9,6 +9,7 @@ Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}
 Source1:	apache.conf
 Source2:	lighttpd.conf
 Source3:	config.sh
+Source4:	domains.txt
 Patch0:		pld.patch
 URL:		https://github.com/lukas2511/letsencrypt.sh
 BuildRequires:	rpmbuild(macros) >= 1.713
@@ -53,6 +54,7 @@ install -p letsencrypt.sh $RPM_BUILD_ROOT%{_sbindir}
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 %clean
@@ -84,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lighttpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config.sh
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/domains.txt
 # challenges written here from letsencrypt.sh, need to be readable by webserver
 %dir %attr(751,root,root) %{_sysconfdir}/acme-challenges
 
