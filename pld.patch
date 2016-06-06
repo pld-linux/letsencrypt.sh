@@ -15,10 +15,10 @@
        if [[ -e "${check_config}/config.sh" ]]; then
          BASEDIR="${check_config}"
          CONFIG="${check_config}/config.sh"
-@@ -109,7 +109,7 @@
+@@ -117,7 +117,7 @@ load_config() {
  
-   [[ -z "${PRIVATE_KEY}" ]] && PRIVATE_KEY="${BASEDIR}/private_key.pem"
-   [[ -z "${PRIVATE_KEY_JSON}" ]] && PRIVATE_KEY_JSON="${BASEDIR}/private_key.json"
+   [[ -z "${ACCOUNT_KEY}" ]] && ACCOUNT_KEY="${BASEDIR}/private_key.pem"
+   [[ -z "${ACCOUNT_KEY_JSON}" ]] && ACCOUNT_KEY_JSON="${BASEDIR}/private_key.json"
 -  [[ -z "${WELLKNOWN}" ]] && WELLKNOWN="${BASEDIR}/.acme-challenges"
 +  [[ -z "${WELLKNOWN}" ]] && WELLKNOWN="${BASEDIR}/acme-challenges"
    [[ -z "${LOCKFILE}" ]] && LOCKFILE="${BASEDIR}/lock"

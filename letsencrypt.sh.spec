@@ -1,11 +1,11 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
-Version:	0.1.0
+Version:	0.2.0
 Release:	1
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	eadd134cc5365753c03929dd70db341d
+# Source0-md5:	74974ab79d6879b92ba353bbf3d1257e
 Source1:	apache.conf
 Source2:	lighttpd.conf
 Source3:	config.sh
@@ -62,6 +62,9 @@ install -p %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 cp -p %{SOURCE5} $RPM_BUILD_ROOT/etc/cron.d/%{name}
+
+# we have own script
+rm $RPM_BUILD_ROOT/etc/cron.d/letsencrypt.sh
 
 %clean
 rm -rf $RPM_BUILD_ROOT
