@@ -61,11 +61,6 @@ cp -p %{SOURCE6} $RPM_BUILD_ROOT/etc/cron.d/letsencrypt
 install -p %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
-cp -p %{SOURCE5} $RPM_BUILD_ROOT/etc/cron.d/%{name}
-
-# we have own script
-rm $RPM_BUILD_ROOT/etc/cron.d/letsencrypt.sh
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
