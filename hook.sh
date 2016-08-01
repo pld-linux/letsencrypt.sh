@@ -8,9 +8,9 @@ deploy_cert)
 	FULLCHAINCERT="$5"
 	CHAINCERT="$6"
 	TIMESTAMP="$7"
-	if [ -x /usr/sbin/lighttpd -a -f /etc/lighttpd/ligcert.pem ]; then
-		echo " + Hook: Overwritting /etc/lighttpd/ligcert.pem and reloading lighttpd..."
-		cat "/etc/webapps/letsencrypt.sh/certs/${DOMAIN}/{privkey,fullchain}.pem" > /etc/lighttpd/ligcert.pem
+	if [ -x /usr/sbin/lighttpd -a -f /etc/lighttpd/server.pem ]; then
+		echo " + Hook: Overwritting /etc/lighttpd/server.pem and reloading lighttpd..."
+		cat "/etc/webapps/letsencrypt.sh/certs/${DOMAIN}/{privkey,fullchain}.pem" > /etc/lighttpd/server.pem
 		/sbin/service lighttpd reload
 	fi
 	if [ -f /etc/nginx/server.pem -a -f /etc/nginx/server.key ]; then
@@ -22,7 +22,7 @@ deploy_cert)
 		/sbin/service "$nginx" reload
 	fi
 	if [ -x /etc/rc.d/init.d/httpd ]; then
-		echo " + Hook: Reloading apache..."
+		echo " + Hook: Reloading Apache..."
 		/sbin/service httpd graceful
 	fi
 	;;
