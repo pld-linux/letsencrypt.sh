@@ -10,7 +10,7 @@ deploy_cert)
 	TIMESTAMP="$7"
 	if [ -x /usr/sbin/lighttpd -a -f /etc/lighttpd/server.pem ]; then
 		echo " + Hook: Overwritting /etc/lighttpd/server.pem and reloading lighttpd..."
-		cat "/etc/webapps/letsencrypt.sh/certs/${DOMAIN}/{privkey,fullchain}.pem" > /etc/lighttpd/server.pem
+		cat "/etc/webapps/letsencrypt.sh/certs/${DOMAIN}/{fullchain,privkey}.pem" > /etc/lighttpd/server.pem
 		/sbin/service lighttpd reload
 	fi
 	if [ -f /etc/nginx/server.pem -a -f /etc/nginx/server.key ]; then
