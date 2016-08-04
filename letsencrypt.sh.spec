@@ -1,7 +1,7 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
 Version:	0.2.0
-Release:	2
+Release:	3
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -22,8 +22,8 @@ Requires:	mktemp
 Requires:	openssl-tools
 Requires:	sed
 Requires:	webapps
-Requires:	webserver(access)
-Requires:	webserver(alias)
+Suggests:	webserver(access)
+Suggests:	webserver(alias)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
