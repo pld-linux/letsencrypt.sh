@@ -10,6 +10,7 @@ deploy_cert)
 	TIMESTAMP="$7"
 	if [ -x /usr/sbin/lighttpd -a -f /etc/lighttpd/server.pem ]; then
 		echo " + Hook: Overwritting /etc/lighttpd/server.pem and reloading lighttpd..."
+		cp -a /etc/lighttpd/server.pem /etc/lighttpd/server.pem.letsencrypt~
 		cat "$FULLCHAINCERT" "$PRIVKEY" > /etc/lighttpd/server.pem
 		/sbin/service lighttpd reload
 	fi
@@ -17,6 +18,8 @@ deploy_cert)
 		nginx="nginx-standard"
 		[ -x /etc/rc.d/init.d/nginx-light ] && nginx="nginx-light"
 		echo " + Hook: Overwritting /etc/nginx/server.{pem,key} and reloading nginx..."
+		cp -a /etc/nginx/server.pem /etc/nginx/server.pem.letsencrypt~
+		cp -a /etc/nginx/server.key /etc/nginx/server.key.letsencrypt~
 		cat "$FULLCHAINCERT" > /etc/nginx/server.pem
 		cat "$PRIVKEY" > /etc/nginx/server.key
 		/sbin/service "$nginx" reload
