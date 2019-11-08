@@ -1,7 +1,7 @@
 Summary:	letsencrypt/acme client implemented as a shell-script
 Name:		letsencrypt.sh
 Version:	0.2.0
-Release:	4
+Release:	5
 License:	MIT
 Group:		Applications/Networking
 Source0:	https://github.com/lukas2511/letsencrypt.sh/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -14,6 +14,7 @@ Source5:	hook.sh
 Source6:	crontab
 Patch0:		pld.patch
 Patch1:		letsencrypt.sh-agrurl.patch
+Patch2:		curl1.1.patch
 URL:		https://github.com/lukas2511/letsencrypt.sh
 BuildRequires:	rpmbuild(macros) >= 1.713
 Requires:	crondaemon
@@ -49,6 +50,7 @@ Current features:
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT

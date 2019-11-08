@@ -1,0 +1,27 @@
+--- ./letsencrypt.sh~	2016-08-14 14:00:09.000000000 +0300
++++ ./letsencrypt.sh	2019-11-08 12:31:02.324585401 +0200
+@@ -76,6 +76,7 @@
+   OPENSSL_CNF="$(openssl version -d | cut -d\" -f2)/openssl.cnf"
+   CONTACT_EMAIL=
+   LOCKFILE=
++  CURL_OPTS="--http1.1"
+ 
+   if [[ -z "${CONFIG:-}" ]]; then
+     echo "#" >&2
+@@ -256,13 +257,13 @@
+ 
+   set +e
+   if [[ "${1}" = "head" ]]; then
+-    statuscode="$(curl -s -w "%{http_code}" -o "${tempcont}" "${2}" -I)"
++    statuscode="$(curl $CURL_OPTS -s -w "%{http_code}" -o "${tempcont}" "${2}" -I)"
+     curlret="${?}"
+   elif [[ "${1}" = "get" ]]; then
+-    statuscode="$(curl -s -w "%{http_code}" -o "${tempcont}" "${2}")"
++    statuscode="$(curl $CURL_OPTS -s -w "%{http_code}" -o "${tempcont}" "${2}")"
+     curlret="${?}"
+   elif [[ "${1}" = "post" ]]; then
+-    statuscode="$(curl -s -w "%{http_code}" -o "${tempcont}" "${2}" -d "${3}")"
++    statuscode="$(curl $CURL_OPTS -s -w "%{http_code}" -o "${tempcont}" "${2}" -d "${3}")"
+     curlret="${?}"
+   else
+     set -e
